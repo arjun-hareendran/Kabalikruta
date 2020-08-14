@@ -1,0 +1,209 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.arjun</groupId>
+    <artifactId>Kabalikruta</artifactId>
+    <version>1.0.0</version>
+    <inceptionYear>2008</inceptionYear>
+    <properties>
+        <scala.version>2.11.8</scala.version>
+        <scala.compat.version>2.11.8</scala.compat.version>
+        <scala.binary.version>2.11</scala.binary.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>scala-tools.org</id>
+            <name>Scala-Tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>scala-tools.org</id>
+            <name>Scala-Tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.5.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.5.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.5.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.specs</groupId>
+            <artifactId>specs</artifactId>
+            <version>1.2.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-data-lake-store-sdk</artifactId>
+            <version>2.3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${scala.binary.version}</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${scala.binary.version}</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_${scala.binary.version}</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.liftweb</groupId>
+            <artifactId>lift-json_2.11</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.databricks</groupId>
+            <artifactId>dbutils-api_2.11</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.delta</groupId>
+            <artifactId>delta-core_2.11</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.5.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.microsoft.azure.sql.v2017_10_01_preview</groupId>
+            <artifactId>azure-mgmt-sql</artifactId>
+            <version>1.0.0-beta</version>
+        </dependency>
+
+              <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.18</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.databricks</groupId>
+            <artifactId>dbutils-api_2.11</artifactId>
+            <version>0.0.4</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resource/AFAB/config</directory>
+                <includes>
+                    <include>*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resource/AFAB/metadata</directory>
+                <includes>
+                    <include>*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scalaVersion>${scala.version}</scalaVersion>
+                    <args>
+                        <arg>-target:jvm-1.5</arg>
+                    </args>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <buildcommands>
+                        <buildcommand>ch.epfl.lamp.sdt.core.scalabuilder</buildcommand>
+                    </buildcommands>
+                    <additionalProjectnatures>
+                        <projectnature>ch.epfl.lamp.sdt.core.scalanature</projectnature>
+                    </additionalProjectnatures>
+                    <classpathContainers>
+                        <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+                        <classpathContainer>ch.epfl.lamp.sdt.launching.SCALA_CONTAINER</classpathContainer>
+                    </classpathContainers>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <configuration>
+                    <scalaVersion>${scala.version}</scalaVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>

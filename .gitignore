@@ -1,0 +1,10 @@
+*.class
+*.log
+/.idea/*
+/metastore_db/*
+/out/*
+/spark-warehouse/*
+/target/*
+/metastore_db
+/src/main/resource/output/*
+/src/main/resource/input/temp/*
